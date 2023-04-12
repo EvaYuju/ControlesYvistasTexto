@@ -52,6 +52,24 @@
                                     <action selector="mySliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="SZh-11-edq"/>
                                 </connections>
                             </slider>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="AVT-iO-GK9">
+                                <rect key="frame" x="149.66666666666666" y="441" width="94" height="32"/>
+                                <connections>
+                                    <action selector="myStepperAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="9T0-4X-rfS"/>
+                                </connections>
+                            </stepper>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Yu-XJ-Nvc">
+                                <rect key="frame" x="172" y="493" width="51" height="31"/>
+                                <connections>
+                                    <action selector="mySitchAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ks2-fy-Ikp"/>
+                                </connections>
+                            </switch>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="azw-Iu-LYe">
+                                <rect key="frame" x="20" y="544" width="353" height="4"/>
+                            </progressView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-fb-Wct">
+                                <rect key="frame" x="186.66666666666666" y="204" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,27 +81,39 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dp6-j0-Idq" secondAttribute="trailing" constant="20" id="EQ8-Ut-0tF"/>
                             <constraint firstItem="zLw-em-pWG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JxW-6f-qjb"/>
                             <constraint firstItem="cxV-of-Vax" firstAttribute="top" secondItem="zLw-em-pWG" secondAttribute="bottom" constant="20" id="KxP-OW-VQd"/>
+                            <constraint firstItem="qfs-fb-Wct" firstAttribute="centerY" secondItem="xga-Ow-aeM" secondAttribute="centerY" id="Q3R-Pb-pMJ"/>
+                            <constraint firstItem="azw-Iu-LYe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Qm5-BR-BVO"/>
                             <constraint firstItem="mne-Mm-15d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Sys-eG-JG4"/>
                             <constraint firstItem="xga-Ow-aeM" firstAttribute="top" secondItem="dp6-j0-Idq" secondAttribute="bottom" constant="20" id="WYA-gL-v5g"/>
+                            <constraint firstItem="AVT-iO-GK9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YPi-9j-tJc"/>
                             <constraint firstItem="zLw-em-pWG" firstAttribute="top" secondItem="xga-Ow-aeM" secondAttribute="bottom" constant="20" id="ZxZ-b8-J1C"/>
+                            <constraint firstItem="qfs-fb-Wct" firstAttribute="centerX" secondItem="xga-Ow-aeM" secondAttribute="centerX" id="dZ3-Si-Nx5"/>
                             <constraint firstItem="dp6-j0-Idq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="ikW-hR-y07"/>
+                            <constraint firstItem="1Yu-XJ-Nvc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jOr-Sm-pjH"/>
+                            <constraint firstItem="azw-Iu-LYe" firstAttribute="top" secondItem="1Yu-XJ-Nvc" secondAttribute="bottom" constant="20" id="rNt-7K-3m4"/>
                             <constraint firstItem="cxV-of-Vax" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="rbj-Yt-mDd"/>
+                            <constraint firstItem="1Yu-XJ-Nvc" firstAttribute="top" secondItem="AVT-iO-GK9" secondAttribute="bottom" constant="20" id="rrU-S5-9no"/>
                             <constraint firstItem="xga-Ow-aeM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uS1-Jm-tbz"/>
+                            <constraint firstItem="AVT-iO-GK9" firstAttribute="top" secondItem="mne-Mm-15d" secondAttribute="bottom" constant="20" id="vPd-4A-NR4"/>
                             <constraint firstItem="dp6-j0-Idq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wMW-gm-GJG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="azw-Iu-LYe" secondAttribute="trailing" constant="20" id="xf8-Sz-AsR"/>
                             <constraint firstItem="mne-Mm-15d" firstAttribute="top" secondItem="cxV-of-Vax" secondAttribute="bottom" constant="20" id="zCM-Jn-YhE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="myButton" destination="dp6-j0-Idq" id="981-tl-j6b"/>
                         <outlet property="myPickerView" destination="xga-Ow-aeM" id="uNC-wD-NA7"/>
+                        <outlet property="myProgressView" destination="azw-Iu-LYe" id="AOa-n0-zQu"/>
                         <outlet property="mySegmentedControl" destination="cxV-of-Vax" id="NKi-af-oMe"/>
                         <outlet property="mySlider" destination="mne-Mm-15d" id="wTR-ep-TuP"/>
+                        <outlet property="myStepper" destination="AVT-iO-GK9" id="C6q-ev-m61"/>
+                        <outlet property="mySwith" destination="1Yu-XJ-Nvc" id="2yV-4L-ZDP"/>
                         <outlet property="mypagecontrol" destination="zLw-em-pWG" id="Pdo-OI-aSh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85" y="-27"/>
+            <point key="canvasLocation" x="84.732824427480907" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>

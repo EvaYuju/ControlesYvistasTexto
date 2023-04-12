@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     // Outlets = componentes
@@ -16,6 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var mypagecontrol: UIPageControl!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     @IBOutlet weak var mySlider: UISlider!
+    @IBOutlet weak var myStepper: UIStepper!
+    @IBOutlet weak var mySwith: UISwitch!
+    @IBOutlet weak var myActivutyIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var myProgressView: UIProgressView!
     
     
     // Vbles
@@ -35,8 +41,9 @@ class ViewController: UIViewController {
         
         myPickerView.backgroundColor = .lightGray
         // * datasource => indicar que clase proporciona los elementos
-        myPickerView.dataSource = self // self = el mismo picker
+        myPickerView.dataSource = self // self = la clase ViewController
         myPickerView.delegate = self // self = la clase ViewController
+        myPickerView.isHidden = true // Para que este apagado al iniciar (hasta que se active el switch
         
         // PageControls
         
@@ -57,21 +64,73 @@ class ViewController: UIViewController {
         mySlider.minimumTrackTintColor = .red   // Color
         
         mySlider.minimumValue = 1               // Valor mínimo
-        //mySlider.maximumValue = myPickerViewValues.count -> da error hay que poner Float
+        //mySlider.maximumValue = myPickerViewValues.count -> da error hay que poner Float (Fix)
         mySlider.maximumValue = Float(myPickerViewValues.count) // Valor max = nº valores que hay en el picker
         
         mySlider.value = 1                      // Valor por defecto
         
+        // Steppers
         
+        myStepper.minimumValue = 1
+        myStepper.maximumValue = Double(myPickerViewValues.count)
 
+        // Switch
+        
+        mySwith.onTintColor = .purple
+        mySwith.isOn = false // Apagado por defecto
+        
+        
+        // Progress Indicators
+        
+        myProgressView.progress = 0
 
     }
+
+   /* pruebas
+    
+    func updateValues() {
+        let value = Int(mySlider.value)
+        
+        // Actualizar el valor del PageControl
+        mypagecontrol.currentPage = value
+        
+        // Actualizar el valor del SegmentedControl
+        mySegmentedControl.selectedSegmentIndex = value
+        
+        // Actualizar el valor del Stepper
+        myStepper.value = Double(value)
+        
+        // Actualizar el valor del Botón
+        //myButton.setTitle(myPickerViewValues[value], for: .normal)
+        
+        // Actualizar el valor del ProgressView
+        myProgressView.progress = Float(value)/Float(myPickerViewValues.count - 1)
+    }
+
+    func updateValues2() {
+         let value = Int(mySlider.value)
+         
+         // Actualizar el valor del PageControl
+         mypagecontrol.currentPage = value
+         
+         // Actualizar el valor del SegmentedControl
+         mySegmentedControl.selectedSegmentIndex = value
+         
+         // Actualizar el valor del Stepper
+         myStepper.value = Double(value)
+         
+         // Actualizar el valor del Botón
+         //myButton.setTitle(myPickerViewValues[value], for: .normal)
+         
+         // Actualizar el valor del ProgressView
+         myProgressView.progress = Float(value)/Float(myPickerViewValues.count - 1)
+     }*/
 
     // Actions
     
     @IBAction func mybuttonAction(_ sender: Any) {
         if myButton.backgroundColor == .blue {
-            myButton.backgroundColor = .green
+            myButton.backgroundColor = .yellow
         } else {
             myButton.backgroundColor = .blue
         }
@@ -87,7 +146,11 @@ class ViewController: UIViewController {
         
         // Para cambiar el valor del segmentedControl con el valor seleccionado:
         mySegmentedControl.selectedSegmentIndex = mypagecontrol.currentPage
-
+        
+        // Para cambiar el valor del slider
+        let value = mypagecontrol.currentPage
+        mySlider.value = Float(value)
+        
     }
     
     @IBAction func mySegmentedControlAction(_ sender: Any) {
@@ -98,22 +161,90 @@ class ViewController: UIViewController {
         mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
         // Para cambiar el nombre del boton con el valor seleccionado:
         myButton.setTitle(myStringSelected, for: .normal)
+        
+        // Primero accedemos al valor del seg
+        //let value = myStepper.value
+        //mySlider.value = Float(value)
+        let value = mySegmentedControl.selectedSegmentIndex
+        mySlider.value = Float(value)
+        
     }
     
     @IBAction func mySliderAction(_ sender: Any) {
-        let myStringSelected = myPickerViewValues[mySegmentedControl.selectedSegmentIndex]
+        myPickerView.selectRow(mypagecontrol.currentPage, inComponent: 0, animated: true)
+        
+        let myStringSelected = myPickerViewValues[mypagecontrol.currentPage]
+        
+        var progress: Float = 0
+        
         switch mySlider.value {
         case  1..<2:
             mySegmentedControl.selectedSegmentIndex = 0
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            // Para cambiar el nombre del boton con el valor seleccionado:
+            myButton.setTitle(myStringSelected, for: .normal)
+            
+            progress = 0.2
+            
+            //updateValues()
         case  2..<3:
             mySegmentedControl.selectedSegmentIndex = 1
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            // Para cambiar el nombre del boton con el valor seleccionado:
             myButton.setTitle(myStringSelected, for: .normal)
+            
+            progress = 0.4
+            
+            //updateValues()
+ 
         case  3..<4:
             mySegmentedControl.selectedSegmentIndex = 2
+
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            // Para cambiar el nombre del boton con el valor seleccionado:
+            myButton.setTitle(myStringSelected, for: .normal)
+            
+            progress = 0.6
+            
+            //updateValues()
+            
         case  4..<5:
             mySegmentedControl.selectedSegmentIndex = 3
+
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            // Para cambiar el nombre del boton con el valor seleccionado:
+            myButton.setTitle(myStringSelected, for: .normal)
+            
+            progress = 0.8
+            
+            //updateValues()
+           
         default:
             mySegmentedControl.selectedSegmentIndex = 4
+            //myButton.setTitle(sliderValue, for: .normal)
+            // Para cambiar el nombre del boton con el valor seleccionado:
+            myButton.setTitle(myStringSelected, for: .normal)
+            
+            progress = 1
+            
+            //break
+    
+        }
+        
+        myProgressView.progress = progress
+    }
+    
+    @IBAction func myStepperAction(_ sender: Any) {
+        // Primero accedemos al valor del stepper
+        let value = myStepper.value
+        mySlider.value = Float(value)
+    }
+    
+    @IBAction func mySitchAction(_ sender: Any) {
+        if mySwith.isOn {   // Si esta apagado esta oculto
+            myPickerView.isHidden = false
+        } else {
+            myPickerView.isHidden = true
         }
     }
     
@@ -124,10 +255,11 @@ class ViewController: UIViewController {
 // UIPickerViewDataSource -> para cargar datos en esa vista
 // UIPickerViewDelegate -> para interactuar con nuestro ViewController
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    // Columnas:
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1 // 1 columna/componente
     }
-    
+    // Filas:
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // return 5 // nº filas/valores
         return myPickerViewValues.count
@@ -136,6 +268,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return myPickerViewValues[row]
     }
+    
     // Para cuando he seleccionado una fila:
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let myStringSelected = myPickerViewValues[row]
@@ -147,6 +280,8 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         
         // Para marcar la fila que tenemos seleccionada:
         mySegmentedControl.selectedSegmentIndex = row
+        
+        // Slider
 
     }
     
