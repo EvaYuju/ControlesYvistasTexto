@@ -128,6 +128,8 @@ class ViewController: UIViewController {
         myButton.setTitle(myStringSelected, for: .normal)
         
         // Primero accedemos al valor del seg
+        //let value = myStepper.value
+        //mySlider.value = Float(value)
         let value = mySegmentedControl.selectedSegmentIndex
         mySlider.value = Float(value)
         
