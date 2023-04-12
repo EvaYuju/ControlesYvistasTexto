@@ -101,6 +101,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="myActivityIndicator" destination="qfs-fb-Wct" id="2CM-tb-4NR"/>
                         <outlet property="myButton" destination="dp6-j0-Idq" id="981-tl-j6b"/>
                         <outlet property="myPickerView" destination="xga-Ow-aeM" id="uNC-wD-NA7"/>
                         <outlet property="myProgressView" destination="azw-Iu-LYe" id="AOa-n0-zQu"/>

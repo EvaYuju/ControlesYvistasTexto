@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var mySlider: UISlider!
     @IBOutlet weak var myStepper: UIStepper!
     @IBOutlet weak var mySwith: UISwitch!
-    @IBOutlet weak var myActivutyIndicator: UIActivityIndicatorView!
+
+    @IBOutlet weak var myActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var myProgressView: UIProgressView!
     
@@ -82,50 +83,14 @@ class ViewController: UIViewController {
         
         // Progress Indicators
         
-        myProgressView.progress = 0
+        myProgressView.progress = 0 // valor inicial 0
+        myActivityIndicator.startAnimating()
+        myActivityIndicator.color = .magenta
+        myActivityIndicator.hidesWhenStopped = true
 
     }
 
-   /* pruebas
-    
-    func updateValues() {
-        let value = Int(mySlider.value)
-        
-        // Actualizar el valor del PageControl
-        mypagecontrol.currentPage = value
-        
-        // Actualizar el valor del SegmentedControl
-        mySegmentedControl.selectedSegmentIndex = value
-        
-        // Actualizar el valor del Stepper
-        myStepper.value = Double(value)
-        
-        // Actualizar el valor del Botón
-        //myButton.setTitle(myPickerViewValues[value], for: .normal)
-        
-        // Actualizar el valor del ProgressView
-        myProgressView.progress = Float(value)/Float(myPickerViewValues.count - 1)
-    }
-
-    func updateValues2() {
-         let value = Int(mySlider.value)
-         
-         // Actualizar el valor del PageControl
-         mypagecontrol.currentPage = value
-         
-         // Actualizar el valor del SegmentedControl
-         mySegmentedControl.selectedSegmentIndex = value
-         
-         // Actualizar el valor del Stepper
-         myStepper.value = Double(value)
-         
-         // Actualizar el valor del Botón
-         //myButton.setTitle(myPickerViewValues[value], for: .normal)
-         
-         // Actualizar el valor del ProgressView
-         myProgressView.progress = Float(value)/Float(myPickerViewValues.count - 1)
-     }*/
-
+   
     // Actions
     
     @IBAction func mybuttonAction(_ sender: Any) {
@@ -163,8 +128,6 @@ class ViewController: UIViewController {
         myButton.setTitle(myStringSelected, for: .normal)
         
         // Primero accedemos al valor del seg
-        //let value = myStepper.value
-        //mySlider.value = Float(value)
         let value = mySegmentedControl.selectedSegmentIndex
         mySlider.value = Float(value)
         
@@ -243,8 +206,12 @@ class ViewController: UIViewController {
     @IBAction func mySitchAction(_ sender: Any) {
         if mySwith.isOn {   // Si esta apagado esta oculto
             myPickerView.isHidden = false
+            myActivityIndicator.stopAnimating()
+            myActivityIndicator.isHidden = true
         } else {
             myPickerView.isHidden = true
+            myActivityIndicator.startAnimating()
+            myActivityIndicator.isHidden = false
         }
     }
     
