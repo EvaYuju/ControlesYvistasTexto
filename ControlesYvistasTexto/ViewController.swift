@@ -65,21 +65,17 @@ class ViewController: UIViewController {
         }
         
         // Sliders
-        
-        mySlider.minimumTrackTintColor = .red   // Color
-        
-        mySlider.minimumValue = 0              // Valor mínimo
-        //mySlider.maximumValue = myPickerViewValues.count -> da error hay que poner Float (Fix)
-        mySlider.maximumValue = Float(myPickerViewValues.count) - 1 // Valor max = nº valores que hay en el picker
-        
-        mySlider.value = 0.1                      // Valor por defecto
-        
-        mySlider.isUserInteractionEnabled = true // ???
-        
+
+        mySlider.minimumTrackTintColor = .red // Color
+        mySlider.minimumValue = 0
+        mySlider.maximumValue = Float(myPickerViewValues.count)
+        mySlider.value = 1
+        mySlider.isUserInteractionEnabled = true 
+
         
         // Steppers
         
-        myStepper.minimumValue = 1
+        myStepper.minimumValue = 0
         myStepper.maximumValue = Double(myPickerViewValues.count)
 
         // Switch
@@ -183,63 +179,47 @@ class ViewController: UIViewController {
         
         var progress: Float = 0
         
-        let value = myStepper.value
-        mySlider.value = Float(value)
+        //let value = myStepper.value
+        //mySlider.value = Float(value)
         
         switch mySlider.value {
         case  1..<2:
             mySegmentedControl.selectedSegmentIndex = 0
-            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
-            // Para cambiar el nombre del boton con el valor seleccionado:
-            myButton.setTitle(myStringSelected, for: .normal)
-            
             progress = 0.2
             
-            //updateValues()
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            // Para cambiar el nombre del boton con el valor seleccionado:
+            myButton.setTitle(myStringSelected, for: .normal)
+            
         case  2..<3:
             mySegmentedControl.selectedSegmentIndex = 1
-            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
-            // Para cambiar el nombre del boton con el valor seleccionado:
-            myButton.setTitle(myStringSelected, for: .normal)
-            
             progress = 0.4
             
-            //updateValues()
- 
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            myButton.setTitle(myStringSelected, for: .normal)
+
         case  3..<4:
             mySegmentedControl.selectedSegmentIndex = 2
-
-            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
-            // Para cambiar el nombre del boton con el valor seleccionado:
-            myButton.setTitle(myStringSelected, for: .normal)
-            
             progress = 0.6
             
-            //updateValues()
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            myButton.setTitle(myStringSelected, for: .normal)
             
         case  4..<5:
             mySegmentedControl.selectedSegmentIndex = 3
+            progress = 0.8
 
             mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
-            // Para cambiar el nombre del boton con el valor seleccionado:
             myButton.setTitle(myStringSelected, for: .normal)
             
-            progress = 0.8
-            
-            //updateValues()
-           
         default:
             mySegmentedControl.selectedSegmentIndex = 4
-            //myButton.setTitle(sliderValue, for: .normal)
-            // Para cambiar el nombre del boton con el valor seleccionado:
-            myButton.setTitle(myStringSelected, for: .normal)
-            
             progress = 1
             
-            break
+            mypagecontrol.currentPage = mySegmentedControl.selectedSegmentIndex
+            myButton.setTitle(myStringSelected, for: .normal)
     
         }
-        
         myProgressView.progress = progress
     }
     
